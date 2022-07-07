@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Cinema List</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/cinema">Cinema</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/hall/list">Cinema Hall</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <h1>Cinema</h1>
+
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item-secondary">Name :</li>
+    <li class="list-group-item" th:text="${cinema.name}"></li>
+  </ul>
+  <ul class="list-group list-group-horizontal-sm">
+    <li class="list-group-item-secondary">City :</li>
+    <li class="list-group-item" th:text="${cinema.adres.city}"></li>
+  </ul>
+  <ul class="list-group list-group-horizontal-sm">
+    <li class="list-group-item-secondary">Street number :</li>
+    <li class="list-group-item" th:text="${cinema.adres.streetNumber}"></li>
+  </ul>
+
+  <h2>Cinema Halls</h2>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th> Sets </th>
+      <th> Number </th>
+      <th> Actions </th>
+    </tr>
+    </thead>
+    <tbody>
+  <tr th:each="c : ${cinema.cinemaHalls}">
+    <td><span th:text="${c.seats}"></span></td>
+    <td><span th:text="${c.number}"></span></td>
+    <td>
+      <a th:href="@{/filmshow/{hallId}(hallId = ${c.id})}"  class="btn btn-outline-primary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" >Add FilmShow</a>
+      <a th:href="@{/hall/showFilmShow/{hallId}(hallId = ${c.id})}"  class="btn btn-outline-primary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" >Show Film Shows</a>
+    </td>
+  </tr>
+    </tbody>
+  </table>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  </tbody>
+</table>
+</body>
+</html>
